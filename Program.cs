@@ -4,7 +4,7 @@ public class MainClass
 {
     public static void Main(string[] args)
     {
-        Airplane embraer = new Airplane("PR-ABC");
+        PassagerAirplane embraer = new PassagerAirplane("PR-ABC", 110);
         Flight flightA = new Flight("001", 500);
         flightA.Airplane = embraer;
 
