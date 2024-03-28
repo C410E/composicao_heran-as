@@ -1,15 +1,23 @@
 namespace Airline;
 
-public class Airplane
+public class Airplane : IArplane
 {
-    public string Prefix;
+    public string Prefix { get; set; }
 
     public Airplane(string Prefix)
     {
         this.Prefix = Prefix;
     }
-    public double CalculateCost()
+    public virtual void Load(){}
+
+    public virtual void Load(double weight){}
+
+    public virtual double CalculateCoast() 
     {
-        return 1200;
+        return 0;
+    }
+    public double CalculateStandardCost()
+    {
+        return 1352.45;
     }
 }

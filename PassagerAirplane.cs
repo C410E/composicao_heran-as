@@ -10,12 +10,16 @@ public class PassagerAirplane : Airplane
     {
         this.PassagerCapacity = PassagerCapacity;
     }
-    public void Load()
+    public override void Load()
     {   
         if (PassagerQuantity == PassagerCapacity)
         {
             throw new ArgumentException("No seats left");
         }
         PassagerQuantity += 1;
+    }
+    public override double CalculateCoast() 
+    {
+        return 0;
     }
 }
