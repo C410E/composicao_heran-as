@@ -2,25 +2,24 @@ namespace Airline;
 
 public class Flight
 {
-    private string? _flightType;
-
-    private IArplane? _Airplane;
     public string FlightId { get; set; }
     public double Distance;
-    public IArplane? Airplane 
-    { 
+
+    private string _FlightType;
+    private IAirplane? _Airplane;
+    public IAirplane? Airplane { 
         get { return _Airplane; } 
-        set 
-        { 
-            if (value.GetType() == typeof(PassagerAirplane))
+        set
+        {
+            if (value!.GetType() == typeof(PassengerAirplane))
             {
-                _flightType = "Comercial";
+                _FlightType = "Commercial";
             }
-            else 
+            else
             {
-                _flightType = "Cargueiro";
+                _FlightType = "Cargo";
             }
-            Airplane = value; 
+            _Airplane = value;
         } 
     }
 
@@ -29,8 +28,24 @@ public class Flight
         this.FlightId = FlightId;
         this.Distance = Distance;
     }
-    public double CalculateCost()
+
+    public void Load()
     {
-        return Airplane.CalculateCoast();
+        if (_Airplane is null) throw new InvalidDataException("Airplane not defined");
+        if (_FlightType == "Cargo") throw new ArgumentException("Cargo flights must specify a load weight");
+        _Airplane.Load();
+    }
+
+    public void Load(double weight)
+    {
+        if (_Airplane is null) throw new InvalidDataException("Airplane not defined");
+        if (_FlightType == "Commercial") throw new ArgumentException("Commercial flights must not specify a load");
+        _Airplane.Load(weight);
+    }
+
+     public double CalculateCost()
+    {
+        if (_Airplane is null) throw new InvalidDataException("Airplane not defined");
+        return 20 * Distance + _Airplane!.CalculateCost();
     }
 }

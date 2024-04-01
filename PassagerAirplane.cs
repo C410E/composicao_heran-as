@@ -1,25 +1,25 @@
 namespace Airline;
 
-public class PassagerAirplane : Airplane
+public class PassengerAirplane : Airplane
 {
-    private int PassagerCapacity { get; set; }
+    private int PassengerCapacity { get; set; }
+    private int PassengerQuantity = 0;
+    
 
-    private int PassagerQuantity = 0;
-
-    public PassagerAirplane(string Prefix, int PassagerCapacity) : base(Prefix)
+    public PassengerAirplane(string Prefix, int PassengerCapacity) : base(Prefix)
     {
-        this.PassagerCapacity = PassagerCapacity;
+        this.PassengerCapacity = PassengerCapacity;
     }
+
     public override void Load()
-    {   
-        if (PassagerQuantity == PassagerCapacity)
-        {
-            throw new ArgumentException("No seats left");
-        }
-        PassagerQuantity += 1;
-    }
-    public override double CalculateCoast() 
     {
-        return 0;
+        if (PassengerQuantity == PassengerCapacity) throw new ArgumentException("No seats left");
+        PassengerQuantity += 1;
     }
+
+    public override double CalculateCost()
+    {
+        return CalculateStandardCost() + 90 * PassengerQuantity;
+    }
+
 }

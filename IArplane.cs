@@ -1,11 +1,9 @@
 namespace Airline;
 
-public interface IArplane
+public interface IAirplane
 {
     string Prefix { get; set; }
     void Load();
-
     void Load(double weight);
-
-    double CalculateCoast();
+    double CalculateCost();
 }
