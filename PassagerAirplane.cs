@@ -1,6 +1,6 @@
 namespace Airline;
 
-public class PassengerAirplane : Airplane
+public class PassengerAirplane : Airplane, IPassagerAirplane
 {
     private int PassengerCapacity { get; set; }
     private int PassengerQuantity = 0;
@@ -11,7 +11,7 @@ public class PassengerAirplane : Airplane
         this.PassengerCapacity = PassengerCapacity;
     }
 
-    public override void Load()
+    public void Load()
     {
         if (PassengerQuantity == PassengerCapacity) throw new ArgumentException("No seats left");
         PassengerQuantity += 1;

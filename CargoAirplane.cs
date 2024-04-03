@@ -1,6 +1,6 @@
 namespace Airline;
 
-public class CargoAirplane : Airplane
+public class CargoAirplane : Airplane, ICargoAirplane
 {
     private double Payload { get; set; }
     private double LoadedWeight { get; set; }
@@ -10,7 +10,7 @@ public class CargoAirplane : Airplane
         this.Payload = Payload;
     }
 
-    public override void Load(double weight)
+    public void Load(double weight)
     {
         if ((LoadedWeight + weight) > Payload) throw new ArgumentException("Payload achieved");
         LoadedWeight += weight;
